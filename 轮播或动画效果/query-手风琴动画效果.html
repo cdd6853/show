@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8">
+	<style>
+		.accordion{width:80%; margin:0 auto;}
+		.accordion>.title{
+			background:#eee; border:1px soild #aaa;
+			padding:6px; font-size:1.5em; 
+			font-weight:bold; cursor:pointer;
+		}
+		.accordion>.content.fade{
+			height:0; background:#555;
+			overflow:hidden; transition:all .5s linear;
+		}
+		.accordion>.content.in{ height:85px; background:#fff;}
+	</style>
+ </head>
+ <body>
+	<div class="accordion">
+		<div class="title">《西游记》简介</div>
+		<div class="content fade in">一个和尚和四个动物的故事: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique nulla voluptas velit minus esse voluptatem illum quis magni nihil sint facilis cupiditate nobis quia ab neque. Modi veniam omnis nisi?	</div>
+		<div class="title">《水浒传》简介</div>
+		<div class="content fade">105个男人和三个女人的故事: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis provident sapiente aperiam reprehenderit repellat rem magnam vel odio quia harum hic impedit dolorem similique ea est consequatur adipisci at nemo!</div>
+		<div class="title">《红楼梦》简介</div>
+		<div class="content fade">一个男人和一群女人的故事: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus minima quidem aspernatur eligendi optio cupiditate minus nam expedita? Aliquid veritatis doloribus maxime vel dicta illo unde iusto qui quasi doloremque.</div>
+	</div>
+	<script src="js/jquery-1.11.3.js"></script>
+	<script>
+		$(".accordion").on("click",".title",e=>{
+			var $tar=$(e.target);
+			//如果$tar的下一个兄弟的class是in
+			if($tar.next().is(".in"))
+				//移除$tar的下一个兄弟的in class
+				$tar.next().removeClass("in");
+			else//否则
+				//为$tar的下一个兄弟添加in class,查找兄弟中的class为content的div，去掉其in class
+				$tar.next().addClass("in")
+				    .siblings(".content").removeClass("in")
+		})
+//		$(".content:gt(0)").hide();
+//		$(".accordion").on("click",".title",e=>{
+//			var $tar=$(e.target);
+//			//如果$tar的下一个兄弟是显示的
+//			if($tar.next().is(":visible"))
+//				//将$tar的下一个兄弟上滑
+//				$tar.next().slideUp();
+//			else//否则
+//				//将$tar的下一个兄弟下滑,再找兄弟中class为content且显示的，将其上滑
+//				$tar.next().slideDown()
+//						.siblings(".content").slideUp()
+//		})
+	</script>
+ </body>
+</html>
